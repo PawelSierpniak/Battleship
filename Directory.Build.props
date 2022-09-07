@@ -1,0 +1,22 @@
+﻿<Project>
+
+    <PropertyGroup Label="Project Settings">
+        <LangVersion>latest</LangVersion>
+        <AnalysisMode>Recommended</AnalysisMode>
+        <AnalysisLevel>latest</AnalysisLevel>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>disable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json"/>
+    </ItemGroup>
+
+    <ItemGroup Label="Global editor config">
+        <AdditionalFiles Include="$(MSBuildThisFileDirectory)editor.globalconfig" Link="editor.globalconfig"/>
+        <EditorConfigFiles Include="$(MSBuildThisFileDirectory)editor.globalconfig" Link="editor.globalconfig"/>
+    </ItemGroup>
+
+</Project>

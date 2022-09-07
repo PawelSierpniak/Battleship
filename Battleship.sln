@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleshipGame.Console", "BattleshipGame.Console\BattleshipGame.Console.csproj", "{62F4E85A-F375-4339-B027-140BB477E175}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{74C835B3-7AAF-4924-A0FB-25BCE889B1A2}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipGame.Domain", "BattleshipGame.Domain\BattleshipGame.Domain.csproj", "{7F82A6B1-0FEE-40F6-9DAD-3365D2652E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipGame.Domain.Test", "BattleshipGame.Domain.Test\BattleshipGame.Domain.Test.csproj", "{FBB2138A-AD2F-4DAD-AF3A-FA8ABD75FE15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62F4E85A-F375-4339-B027-140BB477E175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F4E85A-F375-4339-B027-140BB477E175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F4E85A-F375-4339-B027-140BB477E175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F4E85A-F375-4339-B027-140BB477E175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F82A6B1-0FEE-40F6-9DAD-3365D2652E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F82A6B1-0FEE-40F6-9DAD-3365D2652E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F82A6B1-0FEE-40F6-9DAD-3365D2652E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F82A6B1-0FEE-40F6-9DAD-3365D2652E95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBB2138A-AD2F-4DAD-AF3A-FA8ABD75FE15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBB2138A-AD2F-4DAD-AF3A-FA8ABD75FE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBB2138A-AD2F-4DAD-AF3A-FA8ABD75FE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBB2138A-AD2F-4DAD-AF3A-FA8ABD75FE15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EDF0446-94D0-4F81-AD3B-10E86C3D989D}
+	EndGlobalSection
+EndGlobal
