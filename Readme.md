@@ -1,6 +1,7 @@
 ﻿## TODO
 
-- wprowadzanie danych
-- prezentacja danych
-- symulacja oponenta
-- 
+- Build
+dotnet build
+
+- Run
+dotnet run --project BattleshipGame.Console
