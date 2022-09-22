@@ -1,6 +1,8 @@
 ﻿using BattleshipGame.Domain.GameBoard.ShipsBoard;
 using FluentAssertions;
 
+namespace BattleshipGame.Domain.Test.Players.PutShipStrategies;
+
 internal class ShipBoardScenario
 {
     private static ShipBoard EmptyShipBoard => new();

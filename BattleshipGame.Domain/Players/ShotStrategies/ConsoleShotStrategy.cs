@@ -19,8 +19,8 @@ internal class ConsoleShotStrategy : IShotStrategy
     private static Coordinates? GetCoordinates()
     {
         Console.WriteLine("Please put you shoot. Put in format like 'A2'");
-        var positonStart = Console.ReadLine();
-        var result = Coordinates.TryParseAt(positonStart);
+        var position = Console.ReadLine();
+        var result = Coordinates.TryParseAt(position);
         if (result.IsFailure)
         {
             Console.WriteLine(result.Error);

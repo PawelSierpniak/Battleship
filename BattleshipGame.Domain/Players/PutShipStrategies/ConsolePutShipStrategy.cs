@@ -51,7 +51,7 @@ internal class ConsolePutShipStrategy : IPutShipStrategy
             {
                 var cord = GetShipCoordinates();
 
-                result = PutShip(ship, cord.start, cord.End, board);
+                result = board.TryPutShip(ship, cord.start, cord.End);
                 if (result.IsFailure)
                 {
                     Console.WriteLine(result.Error);
@@ -82,8 +82,8 @@ internal class ConsolePutShipStrategy : IPutShipStrategy
 
     private Coordinates? GetCoordinates()
     {
-        var positonStart = ReadPosition();
-        var result = Coordinates.TryParseAt(positonStart);
+        var position = ReadPosition();
+        var result = Coordinates.TryParseAt(position);
         if (result.IsFailure)
         {
             Console.WriteLine(result.Error);
@@ -91,76 +91,5 @@ internal class ConsolePutShipStrategy : IPutShipStrategy
         }
 
         return result.Value;
-    }
-
-    private static Result PutShip(Ship ship, Coordinates begin, Coordinates end, ShipBoard board)
-    {
-        var result = CheckIfShipCanBePlaced(ship, begin, end, board);
-        if (result.IsFailure)
-        {
-            return result;
-        }
-
-        var list = begin.GetCoordinatesList(end);
-        if (list.IsFailure)
-        {
-            return Result.Failure(list.Error);
-        }
-
-        foreach (var n in list.Value)
-        {
-            board.GetElement(n).PutShip(ship);
-        }
-
-        return Result.Success();
-    }
-
-    private static Result CheckIfShipCanBePlaced(Ship ship, Coordinates begin, Coordinates end, ShipBoard board)
-    {
-        if (!ValidateCoordinate(ship.Width, begin, end))
-        {
-            return Result.Failure($"Coordinates are incorrect. {ship.Name} occupied {ship.Width} fields");
-        }
-
-        //sprawdz czy pola są puste
-        var list = begin.GetCoordinatesList(end);
-        if (list.IsFailure)
-        {
-            return Result.Failure(list.Error);
-        }
-
-        foreach (var n in list.Value)
-        {
-            if (board.GetElement(n).IsOccupied)
-            {
-                return Result.Failure("All fields  need to be empty");
-            }
-        }
-
-        var Neighbors = CoordinatesExtensions.GetNeighbors(list.Value);
-        foreach (var n in Neighbors)
-        {
-            if (board.GetElement(n).IsOccupied)
-            {
-                return Result.Failure("All fields Neighbors need to be empty");
-            }
-        }
-
-        return Result.Success();
-    }
-
-    private static bool ValidateCoordinate(int shipWidth, Coordinates begin, Coordinates end)
-    {
-        if (begin.HasThisSameX(end) && Math.Abs(begin.Y - end.Y) == shipWidth - 1)
-        {
-            return true;
-        }
-
-        if (begin.HasThisSameY(end) && Math.Abs(begin.X - end.X) == shipWidth - 1)
-        {
-            return true;
-        }
-
-        return false;
     }
 }

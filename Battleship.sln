@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipGame.Domain", "Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipGame.Domain.Test", "BattleshipGame.Domain.Test\BattleshipGame.Domain.Test.csproj", "{FBB2138A-AD2F-4DAD-AF3A-FA8ABD75FE15}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CE92DCE3-ADBD-4083-A278-23BDB3272E1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E4129DBD-D88A-4D3A-B084-1DB4F2042CAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,5 +42,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4EDF0446-94D0-4F81-AD3B-10E86C3D989D}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{62F4E85A-F375-4339-B027-140BB477E175} = {CE92DCE3-ADBD-4083-A278-23BDB3272E1E}
+		{7F82A6B1-0FEE-40F6-9DAD-3365D2652E95} = {CE92DCE3-ADBD-4083-A278-23BDB3272E1E}
+		{FBB2138A-AD2F-4DAD-AF3A-FA8ABD75FE15} = {E4129DBD-D88A-4D3A-B084-1DB4F2042CAA}
 	EndGlobalSection
 EndGlobal

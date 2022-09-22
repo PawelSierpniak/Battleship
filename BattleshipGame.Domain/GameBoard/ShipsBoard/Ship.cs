@@ -11,7 +11,7 @@ public abstract class Ship
 
     public string Name { get; }
     public int Width { get; }
-    public int Hits { get; private set; }
+    private int Hits { get; set; }
 
     public void Hit()
     {

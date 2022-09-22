@@ -15,8 +15,21 @@ internal interface IBoardDisplay
 
 internal class ConsoleBoardDisplay : IBoardDisplay
 {
-    private const string BoardHeader = "|  | A| B| C| D| E| F| G| H| I| J|";
+    private readonly string _boardHeader;
     private const string BoardSeparator = "             ";
+
+    public ConsoleBoardDisplay()
+    {
+        //TODO: StringBuilder
+        _boardHeader = "|  ";
+
+        for (var i = 1; i <= Const.BoardSize; i++)
+        {
+            _boardHeader += "| " + Coordinates.At(i, 1).XToString();
+        }
+
+        _boardHeader += "|";
+    }
 
     public void Clear()
     {
@@ -26,7 +39,7 @@ internal class ConsoleBoardDisplay : IBoardDisplay
     public void DisplayBoard(ShipBoard shipBoard)
     {
         var sb = new StringBuilder(shipBoard.MapSize * 4);
-        Console.WriteLine(BoardHeader);
+        Console.WriteLine(_boardHeader);
         for (var y = 1; y <= shipBoard.MapSize; y++)
         {
             PrintRow(shipBoard, y, sb);
@@ -41,7 +54,7 @@ internal class ConsoleBoardDisplay : IBoardDisplay
     {
         Console.WriteLine($"Board {userName}");
         var sb = new StringBuilder(board.MapSize * 2 * 4);
-        Console.WriteLine(BoardHeader + BoardSeparator + BoardHeader);
+        Console.WriteLine(_boardHeader + BoardSeparator + _boardHeader);
         for (var y = 1; y <= board.MapSize; y++)
         {
             PrintRow(board, y, sb);

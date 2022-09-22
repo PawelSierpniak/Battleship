@@ -5,11 +5,13 @@ namespace BattleshipGame.Domain.Players.ShotStrategies;
 
 internal class RandomShotStrategy : IShotStrategy
 {
+    private readonly Random _rand = new(Guid.NewGuid().GetHashCode());
+
     public Coordinates FireShot(FireBoard fireBoard)
     {
         var availableCoordinates = fireBoard.GetListOfEmptyCoordinates();
-        var rand = new Random(Guid.NewGuid().GetHashCode());
-        var coordinates = rand.Next(availableCoordinates.Count);
+
+        var coordinates = _rand.Next(availableCoordinates.Count);
         return availableCoordinates[coordinates];
     }
 }

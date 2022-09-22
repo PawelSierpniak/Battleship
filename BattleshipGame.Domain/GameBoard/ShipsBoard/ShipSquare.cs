@@ -3,6 +3,7 @@ namespace BattleshipGame.Domain.GameBoard.ShipsBoard;
 public class ShipSquare : IBoardElementBase
 {
     private Ship? _ship;
+    private bool _wasShoot;
 
     public bool IsOccupied => _ship != null;
 
@@ -23,6 +24,8 @@ public class ShipSquare : IBoardElementBase
 
     public FireResult ProcessShot()
     {
+        _wasShoot = true;
+
         if (IsOccupied)
         {
             _ship!.Hit();
@@ -42,13 +45,23 @@ public class ShipSquare : IBoardElementBase
     {
         if (_ship != null)
         {
+            if (_wasShoot & !_ship.IsSunk)
+            {
+                return _ship + "X";
+            }
+
+            if (_wasShoot & _ship.IsSunk)
+            {
+                return "S";
+            }
+
             return _ship.ToString();
         }
-        //
-        // if (_wasShoot)
-        // {
-        //     return "X";
-        // }
+
+        if (_wasShoot)
+        {
+            return "X";
+        }
 
         return " ";
     }

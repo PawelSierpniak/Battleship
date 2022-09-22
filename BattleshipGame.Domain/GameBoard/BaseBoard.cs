@@ -23,25 +23,6 @@ internal abstract class BaseBoard<T> where T : class, IBoardElementBase, new()
         return _map[coordinates.X, coordinates.Y];
     }
 
-    public void SetValue(Coordinates coordinates, T value)
-    {
-        _map[coordinates.X, coordinates.Y] = value;
-    }
-
-    public List<T> Range(int startY, int startX, int endY, int endX)
-    {
-        //TODO: add range checks
-        var result = new List<T>();
-
-        for (var y = startY; y <= endY; y++)
-        for (var x = startX; x <= endX; x++)
-        {
-            result.Add(_map[x, y]);
-        }
-
-        return result;
-    }
-
     public List<T> AllWithPredicate(Func<T, bool> predicate)
     {
         var result = new List<T>();

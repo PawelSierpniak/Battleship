@@ -21,7 +21,6 @@ public class Game
     {
         PlaceShip();
 
-       _player1.ShowBoards(_boardDisplay);
         Gameloop();
 
         ShowResult();
@@ -29,7 +28,6 @@ public class Game
 
     private void ShowBoards()
     {
-
         _player2.ShowBoards(_boardDisplay);
     }
 
@@ -103,6 +101,7 @@ public class Game
 
         return new Game(palyer1, palyer2, display);
     }
+
     public static Game BuildHumanVsComputerWith3ShipsAutoPlace()
     {
         var display = new ConsoleBoardDisplay();
@@ -127,7 +126,7 @@ public class Game
         var ShipFactory = () => new List<Ship> { new Battleship(), new Battleship(), new Destroyers() };
 
         var palyer1 = new PlayerBuilder("Human", display, ShipFactory)
-        .WithAutoPutShipStrategy()
+            .WithAutoPutShipStrategy()
             .WithConsoleShotStrategy()
             .WithConsolePutShipStrategy()
             .Build();

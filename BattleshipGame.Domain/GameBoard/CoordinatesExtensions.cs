@@ -1,5 +1,3 @@
-using CSharpFunctionalExtensions;
-
 namespace BattleshipGame.Domain.GameBoard;
 
 internal static class CoordinatesExtensions
@@ -39,13 +37,8 @@ internal static class CoordinatesExtensions
         return false;
     }
 
-    public static Result<List<Coordinates>> GetCoordinatesList(this Coordinates begin, Coordinates end)
+    public static List<Coordinates> GetCoordinatesList(this Coordinates begin, Coordinates end)
     {
-        if (!IsInStraightLine(begin, end))
-        {
-            return Result.Failure<List<Coordinates>>("Ship Coordinates need to be in straight line");
-        }
-
         var result = new List<Coordinates> { begin };
 
         if (begin == end)
@@ -87,43 +80,5 @@ internal static class CoordinatesExtensions
         }
 
         return result;
-    }
-
-    public static List<Coordinates> GetNeighbors(List<Coordinates> list)
-    {
-        var Neighbors = new HashSet<Coordinates>(list.Count * 4);
-
-        list.ForEach(c => GetNeighbors(c)
-            .ForEach(n =>
-                Neighbors.Add(n)));
-        return Neighbors.ToList();
-    }
-
-    private static List<Coordinates> GetNeighbors(Coordinates coordinates)
-    {
-        var Y = coordinates.Y;
-        var X = coordinates.X;
-        var coordinatesList = new List<Coordinates>();
-        if (X > 1)
-        {
-            coordinatesList.Add(Coordinates.At(X - 1, Y));
-        }
-
-        if (Y > 1)
-        {
-            coordinatesList.Add(Coordinates.At(X, Y - 1));
-        }
-
-        if (Y < Coordinates.MaxValue)
-        {
-            coordinatesList.Add(Coordinates.At(X, Y + 1));
-        }
-
-        if (X < Coordinates.MaxValue)
-        {
-            coordinatesList.Add(Coordinates.At(X + 1, Y));
-        }
-
-        return coordinatesList;
     }
 }

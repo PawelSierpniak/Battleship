@@ -1,3 +1,4 @@
+using System.Globalization;
 using CSharpFunctionalExtensions;
 
 namespace BattleshipGame.Domain.GameBoard;
@@ -7,10 +8,10 @@ internal class Coordinates
     public int X { get; }
     public int Y { get; }
     public static int MaxValue => Const.BoardSize;
+
     private static readonly int MinValue = 1;
 
-    private static readonly string XAllowedValues = "ABCDEFGHIJ";
-    private static readonly string XTranslationArray = "_" + XAllowedValues;
+    private static readonly int AIndexInCharTable = 65;
 
     public static Result<Coordinates> TryParseAt(string? coordinates)
     {
@@ -21,39 +22,56 @@ internal class Coordinates
 
         if (coordinates.Length < 2)
         {
-            return Result.Failure<Coordinates>("To shor");
+            return Result.Failure<Coordinates>("To short");
         }
 
-        //TODO: refoctor this;
-        var xAsChar = coordinates[0];
-        if (XAllowedValues.IndexOf(xAsChar) < 0)
+        var positionX = coordinates[0];
+        var x = ParseValue(positionX);
+        if (!IsInRange(x))
         {
-            return Result.Failure<Coordinates>($"Incorrect first letter. Need to be {XAllowedValues}");
+            return Result.Failure<Coordinates>($"Out of range value X {positionX}");
         }
 
-        if (!int.TryParse(coordinates.AsSpan(1), out var y))
+        var positionY = coordinates.Substring(1);
+        if (!int.TryParse(positionY, out var y))
         {
             return Result.Failure<Coordinates>("Incorrect x position. Need to by digits");
         }
 
         if (!IsInRange(y))
         {
-            return Result.Failure<Coordinates>($"Out of range value Y {y}");
-        }
-
-        var x = XTranslationArray.IndexOf(xAsChar);
-        if (x < 1)
-        {
-            return Result.Failure<Coordinates>($"Out of range value Y {y}");
+            return Result.Failure<Coordinates>($"Out of range value Y {positionY}");
         }
 
         return new Coordinates(x, y);
+    }
+
+    private static int ParseValue(char positionX)
+    {
+        var x = char.ToUpper(positionX, CultureInfo.InvariantCulture) - AIndexInCharTable;
+        // we want to start from 1 not from 0
+        return x + 1;
     }
 
     public static Coordinates At(int x, int y)
     {
         CheckRangeAndThrow(x);
         CheckRangeAndThrow(y);
+
+        return new Coordinates(x, y);
+    }
+
+    public static Result<Coordinates> TryAt(int x, int y)
+    {
+        if (!IsInRange(x))
+        {
+            return Result.Failure<Coordinates>("Value X is out of range");
+        }
+
+        if (!IsInRange(y))
+        {
+            return Result.Failure<Coordinates>("Value Y is out of range");
+        }
 
         return new Coordinates(x, y);
     }
@@ -66,7 +84,6 @@ internal class Coordinates
 
     private static bool IsInRange(int value)
     {
-        //TODO fix parameter name
         if (value > MaxValue || value < MinValue)
         {
             return false;
@@ -86,7 +103,12 @@ internal class Coordinates
 
     public override string ToString()
     {
-        return $"{XTranslationArray[X]}{Y}";
+        return $"{XToString()}{Y}";
+    }
+
+    public string XToString()
+    {
+        return ((char)(X + AIndexInCharTable)).ToString();
     }
 
     #region Equals
